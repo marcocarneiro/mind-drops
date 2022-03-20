@@ -1,9 +1,19 @@
 <div>
-    Estabelecendo ligação com o valor do campo de formulário e a propriedade pública. <br>
+    <h3>Mind Drops </h3>
+    <form method="post" wire:submit.prevent="create">
+        <input type="text" name="content" id="content" wire:model="content">
+        <?php //Mensagem de erro da validação feita no componente ShowDrops ?>
+        @error('content') {{ $message }}  @enderror
 
-    <input type="text" name="mensagem" id="mensagem" wire:model="mensagem">
+        <button type="submit">Criar um Drop</button>
+    </form>
+    <hr>
 
-    <p>Atualiza o valor da propriedade pública</p>
-    Este é o valor atual: {{$mensagem}}
+    @foreach($drops as $drop)
+        {{ $drop->user->name }} - {{ $drop->content }}
+    @endforeach
+
+    <?php //Gera os links de paginação - definidos no componente ShowDrops ?>
+    {{ $drops->links }}
 </div>
 
