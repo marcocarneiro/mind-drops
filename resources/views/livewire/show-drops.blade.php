@@ -8,12 +8,17 @@
         <button type="submit">Criar um Drop</button>
     </form>
     <hr>
+    
+    @if(count($drops) ==  0)
+        <p>Nenhum Drop para ser mostrado.</p>
+    @else
+        @foreach($drops as $drop)
+            {{ $drop->user->name }} - {{ $drop->content }}
+        @endforeach
 
-    @foreach($drops as $drop)
-        {{ $drop->user->name }} - {{ $drop->content }}
-    @endforeach
-
-    <?php //Gera os links de paginação - definidos no componente ShowDrops ?>
-    {{ $drops->links }}
+        <?php //Gera os links de paginação - definidos no componente ShowDrops ?>
+        {{ $drops->links }}
+    @endif
+    
 </div>
 
