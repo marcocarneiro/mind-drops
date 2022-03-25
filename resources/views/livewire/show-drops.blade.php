@@ -17,7 +17,7 @@
         @endforeach
 
         <?php //Gera os links de paginação - definidos no componente ShowDrops ?>
-        {{ $drops->links }}
+        {{ $drops->links() }}        
     @endif
     
 </div>

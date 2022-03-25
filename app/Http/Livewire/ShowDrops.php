@@ -20,18 +20,22 @@ class ShowDrops extends Component
     
     public function render()
     {
-        //Retorna os registros do usuário com paginação de 5
-        $drops = Drop::with('user')->paginate(5);
+        //Retorna os registros do usuário com paginação de 5 mais atuais - mais antigos
+        $drops = Drop::with('user')->latest()->paginate(5);
         return view('livewire.show-drops', ['drops' => $drops]);
     }
 
     public function create()
     {
         $this->validate();
-        Drop::create([
-            'content' => $this->content,
-            'user_id' => 1,
-        ]);
+        
+        //Insere o conteúdo de acordo com o relacionamento
+        //definido do método drops() do model user 
+        auth()->user()->drops()->create(
+            [
+                'content' => $this->content,
+            ]
+        );
 
         $this->content = '';
     }
