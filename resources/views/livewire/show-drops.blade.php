@@ -1,6 +1,7 @@
 <div>
     <h3>Mind Drops </h3>
-    <form method="post" wire:submit.prevent="create">
+    <!-- <form method="post" wire:submit.prevent="create"> -->
+    <form wire:submit.prevent="create">
         <input type="text" name="content" id="content" wire:model="content">
         <?php //Mensagem de erro da validação feita no componente ShowDrops ?>
         @error('content') {{ $message }}  @enderror
