@@ -15,6 +15,13 @@
     @else
         @foreach($drops as $drop)
            <p>{{ $drop->user->name }} - {{ $drop->content }}</p>
+           <p>
+            @if($drop->likes->count())
+                <a href="#"><i class="fa-regular fa-heart"></i></a>
+            @else
+                <a href="#"><i class="fa-solid fa-heart"></i></a>
+            @endif
+           </p>
         @endforeach
 
         <?php //Gera os links de paginação - definidos no componente ShowDrops ?>
