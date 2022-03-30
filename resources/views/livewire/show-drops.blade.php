@@ -1,6 +1,6 @@
 <div>
     <h3>Mind Drops </h3>
-    <!-- <form method="post" wire:submit.prevent="create"> -->
+    
     <form wire:submit.prevent="create">
         <input type="text" name="content" id="content" wire:model="content">
         <?php //Mensagem de erro da validação feita no componente ShowDrops ?>
@@ -14,7 +14,7 @@
         <p>Nenhum Drop para ser mostrado.</p>
     @else
         @foreach($drops as $drop)
-            {{ $drop->user->name }} - {{ $drop->content }}
+           <p>{{ $drop->user->name }} - {{ $drop->content }}</p>
         @endforeach
 
         <?php //Gera os links de paginação - definidos no componente ShowDrops ?>
