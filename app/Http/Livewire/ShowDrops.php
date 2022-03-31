@@ -25,6 +25,7 @@ class ShowDrops extends Component
         return view('livewire.show-drops', ['drops' => $drops]);
     }    
 
+    //Método para gravar um Drop no banco
     public function create()
     {
         $this->validate();
@@ -38,5 +39,21 @@ class ShowDrops extends Component
         );
 
         $this->content = '';
+    }
+
+    //Método para gravar curtidas do BD
+    public function like($idDrop)
+    {
+        $drop = Drop::find($idDrop);
+        
+        $drop->likes()->create([
+            'user_id' => auth()->user()->id
+        ]);
+    }
+
+    //Método para remover curtidas do BD
+    public function unlike(Drop $drop)
+    {
+        $drop->likes()->delete();
     }
 }

@@ -14,12 +14,13 @@
         <p>Nenhum Drop para ser mostrado.</p>
     @else
         @foreach($drops as $drop)
-           <p>{{ $drop->user->name }} - {{ $drop->content }}</p>
-           <p>
+           <p>{{ $drop->user->name }} - {{ $drop->content }} &nbsp;
             @if($drop->likes->count())
-                <a href="#"><i class="fa-regular fa-heart"></i></a>
+                <?php // link com databind com o método unlike(envia o id do drop) do componente ShowDrops ?>
+                <a href="#" wire:click.prevent="unlike( {{ $drop->id }} )"><i class="fa-solid fa-heart"></i></a>
             @else
-                <a href="#"><i class="fa-solid fa-heart"></i></a>
+                <?php // link com databind com o método like(envia o id do drop) do componente ShowDrops ?>
+                <a href="#" wire:click.prevent="like( {{ $drop->id }} )"><i class="fa-regular fa-heart"></i></a>
             @endif
            </p>
         @endforeach

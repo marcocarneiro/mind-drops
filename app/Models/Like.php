@@ -8,16 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Like extends Model
 {
     use HasFactory;
+
+    //campos "preenchíveis"
     protected $fillable = ['user_id','drop_id'];
 
+    //Relacionamento com a tabela de usuários
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function like()
+    //Relacionamento com a tabela de drops
+    public function drop()
     {
-        return $this->belongsTo(Like::class);
+        return $this->belongsTo(Drop::class);
     }
 
 }
